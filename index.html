@@ -1,6 +1,396 @@
-<!-- Projects Section -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vrushabha Kamdi | Portfolio</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --border-color: #30363d;
+            --accent-color: #58a6ff;
+            --accent-glow: rgba(88, 166, 255, 0.25);
+            --text-main: #c9d1d9;
+            --text-white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* Header Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 10%;
+            background: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(8px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        header .logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 60px;
+            background: radial-gradient(circle at center, rgba(88, 166, 255, 0.08) 0%, transparent 70%);
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            color: var(--text-white);
+            margin-bottom: 10px;
+        }
+
+        .highlight {
+            color: var(--accent-color);
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+
+        .subtext {
+            color: #8b949e;
+            margin: 0 auto 30px auto;
+            max-width: 600px;
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 12px 26px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn.primary {
+            background-color: var(--accent-color);
+            color: #0d1117;
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .btn.primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(88, 166, 255, 0.5);
+        }
+
+        .btn.secondary {
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            background: var(--card-bg);
+        }
+
+        .btn.secondary:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        /* General Sections */
+        .section {
+            padding: 90px 10%;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--text-white);
+            margin-bottom: 35px;
+            text-align: center;
+        }
+
+        .about-text {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 1.7;
+            font-size: 1.1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 18px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 22px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.95rem;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .skill-card i {
+            font-size: 2.2rem;
+            color: var(--accent-color);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .skill-card:hover i {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px var(--accent-glow);
+        }
+
+        .project-img-placeholder {
+            height: 140px;
+            background: #21262d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            color: var(--accent-color);
+        }
+
+        .project-info {
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex-grow: 1;
+        }
+
+        .project-info h3 {
+            color: var(--text-white);
+            font-size: 1.25rem;
+        }
+
+        .project-info p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #8b949e;
+        }
+
+        .tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: auto;
+            padding-top: 10px;
+        }
+
+        .tags span {
+            background: #1f242c;
+            border: 1px solid var(--border-color);
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 12px;
+            color: var(--accent-color);
+        }
+
+        .github-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-white);
+            background: #21262d;
+            border: 1px solid var(--border-color);
+            padding: 9px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            width: fit-content;
+            transition: all 0.3s ease;
+        }
+
+        .github-btn:hover {
+            background: var(--accent-color);
+            color: #0d1117;
+            border-color: var(--accent-color);
+        }
+
+        /* Contact Section */
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 14px 28px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            border-color: var(--accent-color);
+            color: var(--text-white);
+            transform: translateY(-4px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #8b949e;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="logo">&lt;VK.dev/&gt;</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Hi, I'm <span class="highlight">Vrushabha Kamdi</span></h1>
+            <p class="tagline">Developer & IoT Builder</p>
+            <p class="subtext">Building web applications, Python tools, and smart microcontroller projects.</p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn primary">View Projects</a>
+                <a href="#contact" class="btn secondary">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-text">
+            <p>Hello! I'm Vrushabha Kamdi. I specialize in web development, interactive software prototypes, and Internet of Things (IoT) hardware.</p>
+            <p>I build projects combining full-stack technologies, APIs, and microcontrollers like ESP32, ESP8266, and Arduino.</p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <h2 class="section-title">Skills & Technologies</h2>
+        <div class="skills-grid">
+            <div class="skill-card"><i class="fab fa-python"></i><span>Python</span></div>
+            <div class="skill-card"><i class="fab fa-html5"></i><span>HTML5</span></div>
+            <div class="skill-card"><i class="fab fa-css3-alt"></i><span>CSS3</span></div>
+            <div class="skill-card"><i class="fab fa-js"></i><span>JavaScript</span></div>
+            <div class="skill-card"><i class="fab fa-git-alt"></i><span>Git & GitHub</span></div>
+            <div class="skill-card"><i class="fas fa-microchip"></i><span>Arduino</span></div>
+            <div class="skill-card"><i class="fas fa-wifi"></i><span>ESP32 & ESP8266</span></div>
+            <div class="skill-card"><i class="fas fa-network-wired"></i><span>IoT Systems</span></div>
+            <div class="skill-card"><i class="fas fa-robot"></i><span>Robotics</span></div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
     <section id="projects" class="section">
-        <h2 class="section-title">Projects</h2>
+        <h2 class="section-title">Featured Projects</h2>
         <div class="projects-grid">
             
             <!-- Project 1 -->
@@ -8,10 +398,8 @@
                 <div class="project-img-placeholder"><i class="fas fa-qrcode"></i></div>
                 <div class="project-info">
                     <h3>WiFi QR Code Generator</h3>
-                    <p>Web application designed to quickly generate scannable QR codes for seamless wireless network connections without revealing raw passwords.</p>
-                    <div class="tags">
-                        <span>HTML</span><span>CSS</span><span>JavaScript</span>
-                    </div>
+                    <p>Web app to quickly generate printable QR codes for seamless Wi-Fi connectivity.</p>
+                    <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
                     <a href="https://github.com/vrushabhakamdi-dev/wifi-qr-code-generator" target="_blank" class="github-btn">
                         <i class="fab fa-github"></i> GitHub Repo
                     </a>
@@ -23,10 +411,8 @@
                 <div class="project-img-placeholder"><i class="fas fa-globe-americas"></i></div>
                 <div class="project-info">
                     <h3>IP Location Finder</h3>
-                    <p>Interactive dashboard fetching geographical location details, network host metrics, and ISP data via REST APIs.</p>
-                    <div class="tags">
-                        <span>JavaScript</span><span>REST API</span><span>CSS3</span>
-                    </div>
+                    <p>Interactive dashboard displaying geolocation network metrics using REST APIs.</p>
+                    <div class="tags"><span>JavaScript</span><span>REST API</span><span>CSS</span></div>
                     <a href="https://github.com/vrushabhakamdi-dev/ip-location-finder" target="_blank" class="github-btn">
                         <i class="fab fa-github"></i> GitHub Repo
                     </a>
@@ -38,10 +424,8 @@
                 <div class="project-img-placeholder"><i class="fas fa-shield-alt"></i></div>
                 <div class="project-info">
                     <h3>Password Analyser</h3>
-                    <p>Security analysis tool built to evaluate password strength, calculate entropy, and detect security vulnerabilities.</p>
-                    <div class="tags">
-                        <span>Python</span><span>Security</span><span>Algorithms</span>
-                    </div>
+                    <p>Security tool evaluating password strength, entropy calculation, and vulnerability metrics.</p>
+                    <div class="tags"><span>Python</span><span>Security</span></div>
                     <a href="https://github.com/vrushabhakamdi-dev/password-analyser" target="_blank" class="github-btn">
                         <i class="fab fa-github"></i> GitHub Repo
                     </a>
@@ -53,10 +437,8 @@
                 <div class="project-img-placeholder"><i class="fas fa-seedling"></i></div>
                 <div class="project-info">
                     <h3>Smart Plant Care</h3>
-                    <p>IoT-based plant monitoring system utilizing soil moisture sensors, microcontrollers, and real-time dashboard notifications.</p>
-                    <div class="tags">
-                        <span>ESP8266 / ESP32</span><span>IoT</span><span>C++</span>
-                    </div>
+                    <p>IoT automation monitoring soil moisture levels with cloud alerts via ESP32 controllers.</p>
+                    <div class="tags"><span>ESP32</span><span>IoT</span><span>C++</span></div>
                     <a href="https://github.com/vrushabhakamdi-dev/smart-plant-care" target="_blank" class="github-btn">
                         <i class="fab fa-github"></i> GitHub Repo
                     </a>
@@ -68,10 +450,8 @@
                 <div class="project-img-placeholder"><i class="fas fa-robot"></i></div>
                 <div class="project-info">
                     <h3>Line Following Robot</h3>
-                    <p>Autonomous robot engineered with infrared sensors and motor drivers to follow specified ground trajectories.</p>
-                    <div class="tags">
-                        <span>Arduino</span><span>Robotics</span><span>Sensors</span>
-                    </div>
+                    <p>Autonomous vehicle built with infrared optical sensors and real-time motor controller logic.</p>
+                    <div class="tags"><span>Arduino</span><span>Robotics</span><span>C++</span></div>
                     <a href="https://github.com/vrushabhakamdi-dev/line-following-robot" target="_blank" class="github-btn">
                         <i class="fab fa-github"></i> GitHub Repo
                     </a>
@@ -83,10 +463,8 @@
                 <div class="project-img-placeholder"><i class="fas fa-microchip"></i></div>
                 <div class="project-info">
                     <h3>IoT Automation System</h3>
-                    <p>Smart hardware integration featuring microcontroller communication protocols and remote dashboard management.</p>
-                    <div class="tags">
-                        <span>IoT</span><span>Microcontrollers</span><span>Python</span>
-                    </div>
+                    <p>Smart hardware controller managing connected wireless sensors and remote telemetry interfaces.</p>
+                    <div class="tags"><span>IoT</span><span>ESP8266</span><span>Python</span></div>
                     <a href="https://github.com/vrushabhakamdi-dev" target="_blank" class="github-btn">
                         <i class="fab fa-github"></i> GitHub Repo
                     </a>
@@ -95,3 +473,52 @@
 
         </div>
     </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-links">
+            <a href="https://github.com/vrushabhakamdi-dev" target="_blank" class="contact-item">
+                <i class="fab fa-github"></i>
+                <span>GitHub</span>
+            </a>
+            <a href="https://linkedin.com" target="_blank" class="contact-item">
+                <i class="fab fa-linkedin"></i>
+                <span>LinkedIn</span>
+            </a>
+            <a href="mailto:contact@vrushabhakamdi.dev" class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>Email</span>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Vrushabha Kamdi. Built & hosted on GitHub Pages.</p>
+    </footer>
+
+    <script>
+        // Navbar Active Link Indicator
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            const navLi = document.querySelectorAll('nav ul li a');
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLi.forEach(a => {
+                if (a.getAttribute('href') === `#${current}`) {
+                    a.style.color = '#58a6ff';
+                } else {
+                    a.style.color = '#c9d1d9';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
