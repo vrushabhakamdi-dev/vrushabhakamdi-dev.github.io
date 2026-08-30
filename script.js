@@ -1,45 +1,43 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // 1. Smooth Scroll Active Link Highlighter
+
+    // 1. Navbar Active Link Highlight on Scroll
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('nav ul li a');
+
     window.addEventListener('scroll', () => {
-        let current = '';
-        const sections = document.querySelectorAll('section');
-        const navLi = document.querySelectorAll('nav ul li a');
+        let currentSection = '';
 
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
-            if (pageYOffset >= sectionTop - 150) {
-                current = section.getAttribute('id');
+            const sectionHeight = section.clientHeight;
+            if (window.scrollY >= sectionTop - 150) {
+                currentSection = section.getAttribute('id');
             }
         });
 
-        navLi.forEach(a => {
-            if (a.getAttribute('href') === `#${current}`) {
-                a.style.color = '#58a6ff';
-            } else {
-                a.style.color = '#c9d1d9';
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${currentSection}`) {
+                link.classList.add('active');
             }
         });
     });
 
-    // 2. Scroll Reveal Animations via Intersection Observer
+    // 2. Scroll Reveal Observer for Cyberpunk Fade-In
     const observerOptions = {
-        threshold: 0.15
+        threshold: 0.1
     };
 
-    const observer = new IntersectionObserver((entries, observer) => {
+    const revealOnScroll = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                observer.unobserve(entry.target); // Trigger animation once
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    // Apply animation class to elements
-    const elementsToAnimate = document.querySelectorAll('.section-title, .about-text, .skill-card, .project-card, .contact-item');
-    elementsToAnimate.forEach(el => {
-        el.classList.add('animate-on-scroll');
-        observer.observe(el);
+    sections.forEach(section => {
+        revealOnScroll.observe(section);
     });
 });
