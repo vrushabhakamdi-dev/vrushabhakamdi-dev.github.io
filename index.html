@@ -3,90 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vrushabha Kamdi | Portfolio</title>
-    <meta name="description" content="Portfolio of Vrushabha Kamdi - Full-Stack Developer & IoT Engineer.">
+    <title>Vrushabha Kamdi | Developer Portfolio</title>
+    <meta name="description" content="Personal developer portfolio of Vrushabha Kamdi featuring web tools, Python security scripts, and API applications.">
     
+    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+    <!-- Ambient Background Glows -->
     <div class="glow-bg glow-top-left"></div>
     <div class="glow-bg glow-bottom-right"></div>
 
+    <!-- Navigation Bar -->
     <header class="header">
         <a href="#home" class="logo">Vrushabha Kamdi</a>
         <nav class="navbar">
-            <a href="#about" class="active">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
+            <a href="#about" class="nav-link active">About</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#contact" class="nav-link">Contact</a>
         </nav>
         <div id="menu-btn" class="fas fa-bars"></div>
     </header>
 
+    <!-- Hero Section -->
     <section id="home" class="hero-section">
         <div class="hero-container">
             <h1 class="hero-title">Vrushabha Kamdi</h1>
-            <p class="hero-subtitle">Full-Stack Developer &amp; IoT Hardware Engineer</p>
+            <p class="hero-subtitle">Full-Stack Developer &amp; Automation Engineer</p>
             <p class="hero-description">
-                Expert engineer specializing in custom web platforms, Python automation scripts, REST API integrations, and smart embedded hardware systems.
+                Building efficient web interfaces, Python security utilities, network automation tools, and dynamic API implementations.
             </p>
             <div class="hero-buttons">
-                <a href="https://arnavjalwekar4-code.github.io/about-me/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Get In Touch</a>
-                <a href="https://github.com/vrushabhakamdi-dev" target="_blank" class="btn btn-secondary">Visit GitHub Profile Page</a>
+                <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                <a href="https://github.com/vrushabhakamdi-dev" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub Profile</a>
             </div>
         </div>
     </section>
 
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-card">
+            <p>
+                I am a developer focused on modern web applications, Python automation, and security utilities. I build responsive frontends, integrate REST APIs, and develop local system scripts to solve functional technical problems.
+            </p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
     <section id="skills" class="section">
-        <h2 class="section-title">Technical Expertise</h2>
+        <h2 class="section-title">Technical Skills</h2>
         <div class="grid-container">
             <div class="card">
                 <div class="card-icon"><i class="fab fa-python"></i></div>
-                <h3>Python &amp; Automation</h3>
-                <p>Asynchronous APIs, scripting, security algorithms, automation workflows, and rapid system prototyping.</p>
+                <h3>Python Automation</h3>
+                <p>System utilities, password analysis tools, CLI applications, and automation scripts.</p>
             </div>
 
             <div class="card">
                 <div class="card-icon"><i class="fab fa-js"></i></div>
-                <h3>JavaScript &amp; Web Apps</h3>
-                <p>Custom UI design, dynamic DOM logic, async data handling, Flexbox/Grid layouts, and responsive interfaces.</p>
+                <h3>JavaScript &amp; Web UI</h3>
+                <p>Dynamic DOM rendering, async data processing, interactive tools, and responsive layouts.</p>
             </div>
 
             <div class="card">
-                <div class="card-icon"><i class="fas fa-microchip"></i></div>
-                <h3>ESP32 / ESP8266 IoT</h3>
-                <p>Wi-Fi/Bluetooth microcontrollers, sensor telemetry streams, Blynk dashboards, and embedded hardware interfaces.</p>
-            </div>
-
-            <div class="card">
-                <div class="card-icon"><i class="fas fa-robot"></i></div>
-                <h3>Arduino &amp; C++ Systems</h3>
-                <p>Embedded memory management, motor control algorithms, NRF24L01 wireless transceivers, and IR sensor arrays.</p>
+                <div class="card-icon"><i class="fas fa-network-wired"></i></div>
+                <h3>REST APIs &amp; Telemetry</h3>
+                <p>Fetching real-time endpoint metrics, network geolocation parsing, and third-party integrations.</p>
             </div>
 
             <div class="card">
                 <div class="card-icon"><i class="fab fa-git-alt"></i></div>
                 <h3>Git &amp; Deployment</h3>
-                <p>Version control architecture, GitHub repository management, Supabase cloud integrations, and Vercel hosting.</p>
-            </div>
-
-            <div class="card">
-                <div class="card-icon"><i class="fas fa-network-wired"></i></div>
-                <h3>REST APIs &amp; Databases</h3>
-                <p>Data ingestion pipelines, endpoint telemetry architecture, and secure database connections.</p>
+                <p>Version control management, GitHub workflows, cloud deployments, and repository structuring.</p>
             </div>
         </div>
     </section>
 
+    <!-- Projects Section -->
     <section id="projects" class="section">
-        <h2 class="section-title">Featured Engineering</h2>
+        <h2 class="section-title">Featured Projects</h2>
         <div class="grid-container">
             <div class="card project-card">
                 <h3>WiFi QR Generator</h3>
@@ -96,7 +99,7 @@
                     <span class="badge">Web Utility</span>
                     <span class="badge">Frontend</span>
                 </div>
-                <a href="https://github.com/vrushabhakamdi-dev/wifi-qr-code-generator" target="_blank" class="card-link">View Source Code ➔</a>
+                <a href="https://github.com/vrushabhakamdi-dev/wifi-qr-code-generator" target="_blank" rel="noopener noreferrer" class="card-link">View Source Code ➔</a>
             </div>
 
             <div class="card project-card">
@@ -107,7 +110,7 @@
                     <span class="badge">API Integration</span>
                     <span class="badge">Dashboard</span>
                 </div>
-                <a href="https://github.com/vrushabhakamdi-dev/ip-location-finder" target="_blank" class="card-link">View Source Code ➔</a>
+                <a href="https://github.com/vrushabhakamdi-dev/ip-location-finder" target="_blank" rel="noopener noreferrer" class="card-link">View Source Code ➔</a>
             </div>
 
             <div class="card project-card">
@@ -118,67 +121,69 @@
                     <span class="badge">Python</span>
                     <span class="badge">Security</span>
                 </div>
-                <a href="https://github.com/vrushabhakamdi-dev/password-analyser" target="_blank" class="card-link">View Source Code ➔</a>
+                <a href="https://github.com/vrushabhakamdi-dev/password-analyser" target="_blank" rel="noopener noreferrer" class="card-link">View Source Code ➔</a>
             </div>
 
             <div class="card project-card">
-                <h3>Smart Plant Care</h3>
-                <p class="project-subtitle">ESP32 • IoT • C++ Cloud</p>
-                <p>Microcontroller system streaming real-time soil telemetry and automated hydration alerts to cloud dashboards.</p>
+                <h3>Live-Location Tracker</h3>
+                <p class="project-subtitle">JavaScript • Geolocation API • Maps API</p>
+                <p>Real-time telemetry interface fetching live coordinates and streaming dynamic position updates on interactive maps.</p>
                 <div class="badge-container">
-                    <span class="badge">ESP32</span>
-                    <span class="badge">IoT</span>
+                    <span class="badge">Geolocation</span>
+                    <span class="badge">Real-Time</span>
                 </div>
-                <a href="https://github.com/vrushabhakamdi-dev/smart-plant-care" target="_blank" class="card-link">View Source Code ➔</a>
+                <a href="https://github.com/vrushabhakamdi-dev" target="_blank" rel="noopener noreferrer" class="card-link">View Source Code ➔</a>
             </div>
 
             <div class="card project-card">
-                <h3>Line Following Robot</h3>
-                <p class="project-subtitle">Arduino • Embedded C++ • Robotics</p>
-                <p>Hardware robot programmed with optical IR sensor feedback arrays and trajectory control loops.</p>
+                <h3>WiFi Password Viewer</h3>
+                <p class="project-subtitle">Python • System Utilities • CLI</p>
+                <p>Lightweight system utility script retrieving locally stored wireless network credentials and SSID profile data.</p>
                 <div class="badge-container">
-                    <span class="badge">Arduino</span>
-                    <span class="badge">Robotics</span>
+                    <span class="badge">Python</span>
+                    <span class="badge">Networking</span>
                 </div>
-                <a href="https://github.com/vrushabhakamdi-dev/line-following-robot" target="_blank" class="card-link">View Source Code ➔</a>
+                <a href="https://github.com/vrushabhakamdi-dev" target="_blank" rel="noopener noreferrer" class="card-link">View Source Code ➔</a>
             </div>
 
             <div class="card project-card">
-                <h3>IoT Automation Hub</h3>
-                <p class="project-subtitle">ESP8266 • Python • Wireless</p>
-                <p>Smart hardware automation hub utilizing NRF24L01 transceivers and custom remote control logic.</p>
+                <h3>Password Cracker</h3>
+                <p class="project-subtitle">Python • Security Analysis • Algorithms</p>
+                <p>Demonstration engine testing hash resilience via dictionary lookups, rule parsing, and strength benchmarking.</p>
                 <div class="badge-container">
-                    <span class="badge">Hardware</span>
-                    <span class="badge">Automation</span>
+                    <span class="badge">Cybersecurity</span>
+                    <span class="badge">Algorithms</span>
                 </div>
-                <a href="https://github.com/vrushabhakamdi-dev" target="_blank" class="card-link">View Source Code ➔</a>
+                <a href="https://github.com/vrushabhakamdi-dev" target="_blank" rel="noopener noreferrer" class="card-link">View Source Code ➔</a>
             </div>
         </div>
     </section>
 
+    <!-- Contact Section -->
     <section id="contact" class="section">
-        <h2 class="section-title">Connect</h2>
+        <h2 class="section-title">Get In Touch</h2>
         <div class="contact-grid">
-            <a href="https://github.com/vrushabhakamdi-dev" target="_blank" class="contact-box">
+            <a href="https://github.com/vrushabhakamdi-dev" target="_blank" rel="noopener noreferrer" class="contact-box">
                 <i class="fab fa-github"></i>
                 <h3>GitHub</h3>
-                <p>Explore Repositories</p>
+                <p>github.com/vrushabhakamdi-dev</p>
             </a>
-            <a href="https://linkedin.com" target="_blank" class="contact-box">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="contact-box">
                 <i class="fab fa-linkedin-in"></i>
                 <h3>LinkedIn</h3>
-                <p>Professional Network</p>
+                <p>Connect on LinkedIn</p>
             </a>
             <a href="mailto:contact@vrushabhakamdi.dev" class="contact-box">
                 <i class="fas fa-envelope"></i>
                 <h3>Email</h3>
-                <p>Send Direct Transmission</p>
+                <p>contact@vrushabhakamdi.dev</p>
             </a>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2026 Vrushabha Kamdi. Built with Python, Web &amp; IoT Hardware expertise.</p>
+        <p>&copy; 2026 Vrushabha Kamdi. Built with HTML, CSS, and Vanilla JavaScript.</p>
     </footer>
 
     <script src="script.js"></script>
