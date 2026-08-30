@@ -3,6 +3,7 @@
     --card-bg: #161b22;
     --border-color: #30363d;
     --accent-color: #58a6ff;
+    --accent-glow: rgba(88, 166, 255, 0.3);
     --text-main: #c9d1d9;
     --text-white: #ffffff;
 }
@@ -18,6 +19,7 @@
 body {
     background-color: var(--bg-color);
     color: var(--text-main);
+    overflow-x: hidden;
 }
 
 /* Header Navbar */
@@ -27,6 +29,7 @@ header {
     align-items: center;
     padding: 1.5rem 10%;
     background: rgba(13, 17, 23, 0.95);
+    backdrop-filter: blur(8px);
     position: fixed;
     width: 100%;
     top: 0;
@@ -38,6 +41,11 @@ header .logo {
     font-size: 1.5rem;
     font-weight: bold;
     color: var(--accent-color);
+    transition: transform 0.3s ease;
+}
+
+header .logo:hover {
+    transform: scale(1.05);
 }
 
 nav ul {
@@ -49,14 +57,14 @@ nav ul {
 nav a {
     color: var(--text-main);
     text-decoration: none;
-    transition: color 0.3s;
+    transition: color 0.3s ease;
 }
 
 nav a:hover {
     color: var(--accent-color);
 }
 
-/* Hero Section */
+/* Hero Section & Animations */
 .hero {
     height: 100vh;
     display: flex;
@@ -64,6 +72,11 @@ nav a:hover {
     justify-content: center;
     text-align: center;
     padding-top: 60px;
+    background: radial-gradient(circle at center, rgba(88, 166, 255, 0.05) 0%, transparent 70%);
+}
+
+.hero-content {
+    animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .hero h1 {
@@ -73,6 +86,12 @@ nav a:hover {
 
 .highlight {
     color: var(--accent-color);
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.highlight:hover {
+    transform: translateY(-2px);
 }
 
 .tagline {
@@ -82,7 +101,7 @@ nav a:hover {
 
 .subtext {
     color: #8b949e;
-    margin-bottom: 25px;
+    margin: 0 auto 25px auto;
     max-width: 600px;
 }
 
@@ -92,17 +111,26 @@ nav a:hover {
     gap: 15px;
 }
 
+/* Animated Buttons */
 .btn {
     padding: 10px 22px;
     border-radius: 6px;
     text-decoration: none;
     font-weight: 600;
-    transition: 0.3s;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    position: relative;
+    overflow: hidden;
 }
 
 .btn.primary {
     background-color: var(--accent-color);
     color: #000;
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.btn.primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px rgba(88, 166, 255, 0.6);
 }
 
 .btn.secondary {
@@ -110,11 +138,13 @@ nav a:hover {
     color: var(--text-main);
 }
 
-.btn:hover {
-    opacity: 0.85;
+.btn.secondary:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent-color);
+    color: var(--accent-color);
 }
 
-/* Sections */
+/* General Sections */
 .section {
     padding: 80px 10%;
     border-bottom: 1px solid var(--border-color);
@@ -138,7 +168,7 @@ nav a:hover {
     gap: 15px;
 }
 
-/* Skills Grid */
+/* Skills Grid & Hover Effects */
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
@@ -158,14 +188,26 @@ nav a:hover {
     flex-direction: column;
     gap: 10px;
     align-items: center;
+    transition: all 0.3s ease;
 }
 
 .skill-card i {
     font-size: 2rem;
     color: var(--accent-color);
+    transition: transform 0.3s ease;
 }
 
-/* Projects Grid */
+.skill-card:hover {
+    border-color: var(--accent-color);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.skill-card:hover i {
+    transform: scale(1.2) rotate(5deg);
+}
+
+/* Project Cards & Animations */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -179,12 +221,13 @@ nav a:hover {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s, border-color 0.3s;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .project-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
     border-color: var(--accent-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px var(--accent-glow);
 }
 
 .project-img-placeholder {
@@ -195,6 +238,11 @@ nav a:hover {
     justify-content: center;
     font-size: 2.5rem;
     color: var(--accent-color);
+    transition: background 0.3s ease;
+}
+
+.project-card:hover .project-img-placeholder {
+    background: #282e38;
 }
 
 .project-info {
@@ -230,6 +278,11 @@ nav a:hover {
     padding: 3px 8px;
     border-radius: 12px;
     color: var(--accent-color);
+    transition: background 0.2s ease;
+}
+
+.tags span:hover {
+    background: rgba(88, 166, 255, 0.1);
 }
 
 .github-btn {
@@ -246,15 +299,16 @@ nav a:hover {
     font-size: 0.85rem;
     margin-top: 10px;
     width: fit-content;
-    transition: background 0.2s;
+    transition: all 0.3s ease;
 }
 
 .github-btn:hover {
-    background: var(--border-color);
-    color: var(--accent-color);
+    background: var(--accent-color);
+    color: #000;
+    border-color: var(--accent-color);
 }
 
-/* Contact Links */
+/* Contact Items Animation */
 .contact-links {
     display: flex;
     justify-content: center;
@@ -273,12 +327,14 @@ nav a:hover {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    transition: 0.3s;
+    transition: all 0.3s ease;
 }
 
 .contact-item:hover {
     border-color: var(--accent-color);
     color: var(--text-white);
+    transform: translateY(-4px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 footer {
@@ -286,4 +342,27 @@ footer {
     padding: 25px;
     color: #8b949e;
     font-size: 0.9rem;
+}
+
+/* --- Keyframe & Scroll Reveal Animations --- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
