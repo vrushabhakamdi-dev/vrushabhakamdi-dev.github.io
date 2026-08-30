@@ -28,7 +28,7 @@ body {
     position: relative;
 }
 
-/* Ambient Radial Glow Backgrounds */
+/* Ambient Glow Backgrounds */
 .glow-bg {
     position: absolute;
     width: 500px;
@@ -39,17 +39,10 @@ body {
     z-index: -1;
 }
 
-.glow-top-left {
-    top: -100px;
-    left: -100px;
-}
+.glow-top-left { top: -100px; left: -100px; }
+.glow-bottom-right { bottom: 100px; right: -100px; }
 
-.glow-bottom-right {
-    bottom: 100px;
-    right: -100px;
-}
-
-/* Navbar */
+/* Header & Navbar */
 .header {
     position: fixed;
     top: 0;
@@ -98,7 +91,7 @@ body {
 
 /* Hero Section */
 .hero-section {
-    min-height: 90vh;
+    min-height: 85vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -106,9 +99,7 @@ body {
     text-align: center;
 }
 
-.hero-container {
-    max-width: 800px;
-}
+.hero-container { max-width: 800px; }
 
 .hero-title {
     font-family: var(--font-heading);
@@ -121,7 +112,7 @@ body {
 
 .hero-subtitle {
     font-family: var(--font-heading);
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 600;
     color: var(--accent-emerald);
     margin-bottom: 20px;
@@ -140,6 +131,7 @@ body {
     flex-wrap: wrap;
 }
 
+/* Buttons */
 .btn {
     display: inline-block;
     padding: 12px 26px;
@@ -172,10 +164,8 @@ body {
     transform: translateY(-2px);
 }
 
-/* Sections & Grids */
-.section {
-    padding: 80px 8%;
-}
+/* Section Shared Layouts */
+.section { padding: 80px 8%; }
 
 .section-title {
     font-family: var(--font-heading);
@@ -185,13 +175,22 @@ body {
     margin-bottom: 40px;
 }
 
+.about-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 30px;
+    backdrop-filter: blur(12px);
+    font-size: 1.1rem;
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 24px;
 }
 
-/* Card Styling */
+/* Card General Styling */
 .card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
@@ -224,6 +223,13 @@ body {
     color: var(--text-body);
 }
 
+/* Project Cards Specific Layout */
+.project-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .project-subtitle {
     font-size: 0.85rem;
     color: var(--accent-emerald);
@@ -235,7 +241,7 @@ body {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
-    margin: 18px 0;
+    margin: 18px 0 20px;
 }
 
 .badge {
@@ -253,15 +259,12 @@ body {
     font-size: 0.9rem;
     font-weight: 600;
     color: var(--text-heading);
-    display: inline-block;
     transition: color 0.2s ease;
 }
 
-.card-link:hover {
-    color: var(--accent-emerald);
-}
+.card-link:hover { color: var(--accent-emerald); }
 
-/* Contact Grid */
+/* Contact Section */
 .contact-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -275,6 +278,7 @@ body {
     padding: 24px;
     text-align: center;
     transition: all 0.3s ease;
+    color: var(--text-heading);
 }
 
 .contact-box:hover {
@@ -291,7 +295,7 @@ body {
 .contact-box h3 {
     font-family: var(--font-heading);
     font-size: 1.1rem;
-    color: var(--text-heading);
+    margin-bottom: 4px;
 }
 
 .contact-box p {
@@ -305,7 +309,6 @@ body {
     padding: 40px 8%;
     border-top: 1px solid var(--card-border);
     font-size: 0.9rem;
-    color: var(--text-body);
 }
 
 /* Mobile Responsive */
