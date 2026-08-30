@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. Mobile Menu Toggle Logic
+    // 1. Mobile Navigation Menu Toggle
     const menuBtn = document.querySelector('#menu-btn');
     const navbar = document.querySelector('.navbar');
 
@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         navbar.classList.toggle('active');
     });
 
-    // 2. IntersectionObserver for Dynamic Active Link Highlighting
+    // 2. Active Section Highlighting
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('.nav-link');
 
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     sections.forEach(section => sectionObserver.observe(section));
 
-    // 3. Smooth Close Mobile Menu on Link Click
+    // 3. Smooth Close Menu on Mobile Link Selection
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             menuBtn.classList.remove('fa-times');
