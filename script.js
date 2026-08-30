@@ -1,43 +1,35 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. Navbar Active Link Highlight on Scroll
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('nav ul li a');
+    // Toggle Navbar for Mobile Screens
+    const menuBtn = document.querySelector('#menu-btn');
+    const navbar = document.querySelector('.navbar');
 
-    window.addEventListener('scroll', () => {
-        let currentSection = '';
-
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (window.scrollY >= sectionTop - 150) {
-                currentSection = section.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${currentSection}`) {
-                link.classList.add('active');
-            }
-        });
-    });
-
-    // 2. Scroll Reveal Observer for Cyberpunk Fade-In
-    const observerOptions = {
-        threshold: 0.1
+    menuBtn.onclick = () => {
+        menuBtn.classList.toggle('fa-times');
+        navbar.classList.toggle('active');
     };
 
-    const revealOnScroll = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
+    // Active Link Scroll Highlight
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('header nav a');
+
+    window.onscroll = () => {
+        sections.forEach(sec => {
+            const top = window.scrollY;
+            const offset = sec.offsetTop - 150;
+            const height = sec.offsetHeight;
+            const id = sec.getAttribute('id');
+
+            if (top >= offset && top < offset + height) {
+                navLinks.forEach(links => {
+                    links.classList.remove('active');
+                    document.querySelector('header nav a[href*=' + id + ']').classList.add('active');
+                });
             }
         });
-    }, observerOptions);
 
-    sections.forEach(section => {
-        revealOnScroll.observe(section);
-    });
+        // Close Mobile Menu on Scroll
+        menuBtn.classList.remove('fa-times');
+        navbar.classList.remove('active');
+    };
 });
