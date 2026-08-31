@@ -57,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
             particles[i].update();
             particles[i].draw();
 
-            // Connect nearby particles with subtle emerald lines
             for (let j = i + 1; j < particles.length; j++) {
                 const dx = particles[i].x - particles[j].x;
                 const dy = particles[i].y - particles[j].y;
@@ -85,17 +84,71 @@ document.addEventListener('DOMContentLoaded', () => {
     initParticles();
     animateParticles();
 
-    // 2. Mobile Navigation Menu Toggle
-    const menuBtn = document.querySelector('#menu-btn');
-    const navbar = document.querySelector('.navbar');
+    // 2. Hero Typewriter Effect
+    const textArray = [
+        "Full-Stack Web Developer",
+        "Next.js & Node.js Developer",
+        "C / C++ Programmer",
+        "Python Automation Engineer"
+    ];
+    let textIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typewriterEl = document.getElementById('typewriter');
 
-    menuBtn.addEventListener('click', () => {
-        menuBtn.classList.toggle('fa-times');
-        navbar.classList.toggle('active');
+    function type() {
+        if (!typewriterEl) return;
+        const currentText = textArray[textIndex];
+        
+        if (isDeleting) {
+            typewriterEl.textContent = currentText.substring(0, charIndex - 1);
+            charIndex--;
+        } else {
+            typewriterEl.textContent = currentText.substring(0, charIndex + 1);
+            charIndex++;
+        }
+
+        let typeSpeed = isDeleting ? 50 : 100;
+
+        if (!isDeleting && charIndex === currentText.length) {
+            typeSpeed = 2000;
+            isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            textIndex = (textIndex + 1) % textArray.length;
+            typeSpeed = 500;
+        }
+
+        setTimeout(type, typeSpeed);
+    }
+
+    type();
+
+    // 3. 3D Dynamic Card Tilt Effect (Applied to Skill, Project, and Contact Cards)
+    const tiltCards = document.querySelectorAll('.card, .project-card, .contact-box');
+
+    tiltCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const rotateX = ((y - centerY) / centerY) * -8;
+            const rotateY = ((x - centerX) / centerX) * 8;
+
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+        });
     });
 
-    // 3. Scroll Reveal Observer for Cards and Sections
-    const revealElements = document.querySelectorAll('.card, .about-card, .contact-box, .section-title');
+    // 4. Scroll Reveal Observer for Cards and Sections
+    const revealElements = document.querySelectorAll('.card, .project-card, .about-card, .contact-box, .section-title');
 
     revealElements.forEach(el => el.classList.add('reveal'));
 
@@ -108,12 +161,34 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, {
         root: null,
-        threshold: 0.15
+        threshold: 0.12
     });
 
     revealElements.forEach(el => revealObserver.observe(el));
 
-    // 4. Active Section Highlighting
+    // 5. Scroll Progress Bar Update
+    const progressBar = document.getElementById('scroll-progress');
+    if (progressBar) {
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            progressBar.style.width = scrollPercent + '%';
+        });
+    }
+
+    // 6. Mobile Navigation Menu Toggle
+    const menuBtn = document.querySelector('#menu-btn');
+    const navbar = document.querySelector('.navbar');
+
+    if (menuBtn && navbar) {
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('fa-times');
+            navbar.classList.toggle('active');
+        });
+    }
+
+    // 7. Active Section Highlighting
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('.nav-link');
 
@@ -137,11 +212,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     sections.forEach(section => sectionObserver.observe(section));
 
-    // 5. Smooth Close Menu on Mobile Link Selection
+    // 8. Smooth Close Mobile Menu on Link Click
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
-            menuBtn.classList.remove('fa-times');
-            navbar.classList.remove('active');
+            if (menuBtn && navbar) {
+                menuBtn.classList.remove('fa-times');
+                navbar.classList.remove('active');
+            }
         });
     });
 });
