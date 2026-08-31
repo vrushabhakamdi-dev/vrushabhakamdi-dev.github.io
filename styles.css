@@ -1,12 +1,13 @@
 :root {
-    --bg-dark: #0a0d14;
-    --card-bg: rgba(18, 24, 38, 0.7);
-    --card-border: rgba(255, 255, 255, 0.08);
-    --card-border-hover: rgba(16, 185, 129, 0.4);
-    --accent-emerald: #10b981;
-    --accent-glow: rgba(16, 185, 129, 0.18);
+    --bg-dark: #070a12; /* Rich Dark Navy */
+    --card-bg: rgba(13, 20, 36, 0.75); /* Deep Navy Glassmorphism */
+    --card-border: rgba(16, 185, 129, 0.15); /* Submitting Emerald Border */
+    --card-border-hover: rgba(16, 185, 129, 0.5); /* Glowing Emerald Border */
+    --accent-emerald: #10b981; /* Primary Emerald Green */
+    --accent-emerald-bright: #34d399; /* Bright Emerald Highlight */
+    --accent-glow: rgba(16, 185, 129, 0.2);
     --text-heading: #f9fafb;
-    --text-body: #9ca3af;
+    --text-body: #a0aec0;
     --font-heading: 'Space Grotesk', sans-serif;
     --font-body: 'Inter', sans-serif;
 }
@@ -28,15 +29,26 @@ body {
     position: relative;
 }
 
-/* Ambient Background Glows & Pulsing Keyframes */
+/* Background Canvas for Flying Particles */
+#particles-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Ambient Background Glows */
 .glow-bg {
     position: absolute;
     width: 550px;
     height: 550px;
     border-radius: 50%;
-    background: radial-gradient(circle, var(--accent-glow) 0%, rgba(10, 13, 20, 0) 70%);
+    background: radial-gradient(circle, var(--accent-glow) 0%, rgba(7, 10, 18, 0) 70%);
     pointer-events: none;
-    z-index: -1;
+    z-index: 1;
     animation: pulseGlow 8s ease-in-out infinite alternate;
 }
 
@@ -48,6 +60,12 @@ body {
     100% { transform: scale(1.15) translate(30px, -20px); opacity: 1; }
 }
 
+/* Ensure Page Content Sits Above Background Elements */
+header, section, footer {
+    position: relative;
+    z-index: 2;
+}
+
 /* Header & Animated Navbar */
 .header {
     position: fixed;
@@ -55,7 +73,7 @@ body {
     left: 0;
     width: 100%;
     padding: 1.25rem 8%;
-    background: rgba(10, 13, 20, 0.85);
+    background: rgba(7, 10, 18, 0.85);
     backdrop-filter: blur(16px);
     display: flex;
     justify-content: space-between;
@@ -108,7 +126,7 @@ body {
 
 .navbar a:hover,
 .navbar a.active {
-    color: var(--accent-emerald);
+    color: var(--accent-emerald-bright);
 }
 
 #menu-btn {
@@ -119,7 +137,7 @@ body {
     transition: transform 0.3s ease;
 }
 
-/* Hero Section Entry Animations */
+/* Hero Section */
 .hero-section {
     min-height: 85vh;
     display: flex;
@@ -145,7 +163,7 @@ body {
     font-family: var(--font-heading);
     font-size: 1.4rem;
     font-weight: 600;
-    color: var(--accent-emerald);
+    color: var(--accent-emerald-bright);
     margin-bottom: 20px;
     animation: fadeInUp 0.8s ease 0.2s forwards;
     opacity: 0;
@@ -179,7 +197,7 @@ body {
     }
 }
 
-/* Interactive Animated Buttons */
+/* Buttons */
 .btn {
     display: inline-block;
     padding: 12px 26px;
@@ -188,8 +206,6 @@ body {
     font-size: 0.95rem;
     font-weight: 600;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    position: relative;
-    overflow: hidden;
 }
 
 .btn-primary {
@@ -198,18 +214,19 @@ body {
 }
 
 .btn-primary:hover {
+    background-color: var(--accent-emerald-bright);
     box-shadow: 0 0 25px rgba(16, 185, 129, 0.5);
     transform: translateY(-3px) scale(1.02);
 }
 
 .btn-secondary {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(13, 20, 36, 0.6);
     color: var(--text-heading);
     border: 1px solid var(--card-border);
 }
 
 .btn-secondary:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(16, 185, 129, 0.1);
     border-color: var(--card-border-hover);
     transform: translateY(-3px) scale(1.02);
 }
@@ -232,12 +249,13 @@ body {
     padding: 30px;
     backdrop-filter: blur(12px);
     font-size: 1.1rem;
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .about-card:hover {
     border-color: var(--card-border-hover);
     transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.1);
 }
 
 .grid-container {
@@ -246,7 +264,7 @@ body {
     gap: 24px;
 }
 
-/* Card Hover Elevate & Icon Lift Animation */
+/* Cards */
 .card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
@@ -259,12 +277,12 @@ body {
 .card:hover {
     border-color: var(--card-border-hover);
     transform: translateY(-8px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(16, 185, 129, 0.15);
 }
 
 .card-icon {
     font-size: 2.2rem;
-    color: var(--accent-emerald);
+    color: var(--accent-emerald-bright);
     margin-bottom: 16px;
     transition: transform 0.3s ease;
 }
@@ -285,7 +303,7 @@ body {
     color: var(--text-body);
 }
 
-/* Project Cards Link Arrow Animation */
+/* Project Cards */
 .project-card {
     display: flex;
     flex-direction: column;
@@ -294,7 +312,7 @@ body {
 
 .project-subtitle {
     font-size: 0.85rem;
-    color: var(--accent-emerald);
+    color: var(--accent-emerald-bright);
     font-weight: 600;
     margin-bottom: 12px;
 }
@@ -310,7 +328,7 @@ body {
     font-size: 0.75rem;
     font-weight: 500;
     background: rgba(16, 185, 129, 0.1);
-    color: var(--accent-emerald);
+    color: var(--accent-emerald-bright);
     padding: 4px 12px;
     border-radius: 20px;
     border: 1px solid rgba(16, 185, 129, 0.2);
@@ -318,7 +336,7 @@ body {
 }
 
 .card:hover .badge {
-    background: rgba(16, 185, 129, 0.2);
+    background: rgba(16, 185, 129, 0.25);
 }
 
 .card-link {
@@ -333,11 +351,11 @@ body {
 }
 
 .card-link:hover {
-    color: var(--accent-emerald);
+    color: var(--accent-emerald-bright);
     transform: translateX(5px);
 }
 
-/* Contact Section Animated Cards */
+/* Contact Section */
 .contact-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -357,12 +375,12 @@ body {
 .contact-box:hover {
     border-color: var(--card-border-hover);
     transform: translateY(-6px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 0 15px rgba(16, 185, 129, 0.15);
 }
 
 .contact-box i {
     font-size: 2rem;
-    color: var(--accent-emerald);
+    color: var(--accent-emerald-bright);
     margin-bottom: 12px;
     transition: transform 0.3s ease;
 }
@@ -382,7 +400,7 @@ body {
     color: var(--text-body);
 }
 
-/* Scroll Reveal Classes (Driven by JS) */
+/* Scroll Reveal Classes */
 .reveal {
     opacity: 0;
     transform: translateY(40px);
@@ -410,7 +428,7 @@ body {
         top: 100%;
         left: 0;
         width: 100%;
-        background: rgba(10, 13, 20, 0.95);
+        background: rgba(7, 10, 18, 0.95);
         backdrop-filter: blur(16px);
         flex-direction: column;
         padding: 20px 8%;
