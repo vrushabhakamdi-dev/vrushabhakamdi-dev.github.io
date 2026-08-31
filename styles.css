@@ -4,7 +4,7 @@
     --card-border: rgba(255, 255, 255, 0.08);
     --card-border-hover: rgba(16, 185, 129, 0.4);
     --accent-emerald: #10b981;
-    --accent-glow: rgba(16, 185, 129, 0.15);
+    --accent-glow: rgba(16, 185, 129, 0.18);
     --text-heading: #f9fafb;
     --text-body: #9ca3af;
     --font-heading: 'Space Grotesk', sans-serif;
@@ -28,21 +28,27 @@ body {
     position: relative;
 }
 
-/* Ambient Glow Backgrounds */
+/* Ambient Background Glows & Pulsing Keyframes */
 .glow-bg {
     position: absolute;
-    width: 500px;
-    height: 500px;
+    width: 550px;
+    height: 550px;
     border-radius: 50%;
     background: radial-gradient(circle, var(--accent-glow) 0%, rgba(10, 13, 20, 0) 70%);
     pointer-events: none;
     z-index: -1;
+    animation: pulseGlow 8s ease-in-out infinite alternate;
 }
 
 .glow-top-left { top: -100px; left: -100px; }
-.glow-bottom-right { bottom: 100px; right: -100px; }
+.glow-bottom-right { bottom: 100px; right: -100px; animation-delay: 4s; }
 
-/* Header & Navbar */
+@keyframes pulseGlow {
+    0% { transform: scale(1) translate(0, 0); opacity: 0.7; }
+    100% { transform: scale(1.15) translate(30px, -20px); opacity: 1; }
+}
+
+/* Header & Animated Navbar */
 .header {
     position: fixed;
     top: 0;
@@ -56,6 +62,7 @@ body {
     align-items: center;
     z-index: 1000;
     border-bottom: 1px solid var(--card-border);
+    transition: all 0.3s ease;
 }
 
 .logo {
@@ -63,6 +70,11 @@ body {
     font-size: 1.35rem;
     font-weight: 700;
     color: var(--text-heading);
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
 }
 
 .navbar {
@@ -74,7 +86,24 @@ body {
     color: var(--text-body);
     font-size: 0.95rem;
     font-weight: 500;
-    transition: color 0.2s ease;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.navbar a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: var(--accent-emerald);
+    transition: width 0.3s ease;
+}
+
+.navbar a:hover::after,
+.navbar a.active::after {
+    width: 100%;
 }
 
 .navbar a:hover,
@@ -87,9 +116,10 @@ body {
     font-size: 1.5rem;
     color: var(--text-heading);
     cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
-/* Hero Section */
+/* Hero Section Entry Animations */
 .hero-section {
     min-height: 85vh;
     display: flex;
@@ -108,6 +138,7 @@ body {
     color: var(--text-heading);
     letter-spacing: -1px;
     margin-bottom: 12px;
+    animation: fadeInUp 0.8s ease forwards;
 }
 
 .hero-subtitle {
@@ -116,12 +147,16 @@ body {
     font-weight: 600;
     color: var(--accent-emerald);
     margin-bottom: 20px;
+    animation: fadeInUp 0.8s ease 0.2s forwards;
+    opacity: 0;
 }
 
 .hero-description {
     font-size: 1.1rem;
     color: var(--text-body);
     margin-bottom: 35px;
+    animation: fadeInUp 0.8s ease 0.4s forwards;
+    opacity: 0;
 }
 
 .hero-buttons {
@@ -129,9 +164,22 @@ body {
     gap: 15px;
     justify-content: center;
     flex-wrap: wrap;
+    animation: fadeInUp 0.8s ease 0.6s forwards;
+    opacity: 0;
 }
 
-/* Buttons */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Interactive Animated Buttons */
 .btn {
     display: inline-block;
     padding: 12px 26px;
@@ -139,7 +187,9 @@ body {
     font-family: var(--font-heading);
     font-size: 0.95rem;
     font-weight: 600;
-    transition: all 0.25s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
 }
 
 .btn-primary {
@@ -148,8 +198,8 @@ body {
 }
 
 .btn-primary:hover {
-    box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
-    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(16, 185, 129, 0.5);
+    transform: translateY(-3px) scale(1.02);
 }
 
 .btn-secondary {
@@ -161,7 +211,7 @@ body {
 .btn-secondary:hover {
     background-color: rgba(255, 255, 255, 0.1);
     border-color: var(--card-border-hover);
-    transform: translateY(-2px);
+    transform: translateY(-3px) scale(1.02);
 }
 
 /* Section Shared Layouts */
@@ -182,6 +232,12 @@ body {
     padding: 30px;
     backdrop-filter: blur(12px);
     font-size: 1.1rem;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.about-card:hover {
+    border-color: var(--card-border-hover);
+    transform: translateY(-3px);
 }
 
 .grid-container {
@@ -190,25 +246,31 @@ body {
     gap: 24px;
 }
 
-/* Card General Styling */
+/* Card Hover Elevate & Icon Lift Animation */
 .card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: 12px;
     padding: 30px;
     backdrop-filter: blur(12px);
-    transition: all 0.3s ease;
+    transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .card:hover {
     border-color: var(--card-border-hover);
-    transform: translateY(-4px);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
 }
 
 .card-icon {
     font-size: 2.2rem;
     color: var(--accent-emerald);
     margin-bottom: 16px;
+    transition: transform 0.3s ease;
+}
+
+.card:hover .card-icon {
+    transform: translateY(-4px) scale(1.1);
 }
 
 .card h3 {
@@ -223,7 +285,7 @@ body {
     color: var(--text-body);
 }
 
-/* Project Cards Specific Layout */
+/* Project Cards Link Arrow Animation */
 .project-card {
     display: flex;
     flex-direction: column;
@@ -252,6 +314,11 @@ body {
     padding: 4px 12px;
     border-radius: 20px;
     border: 1px solid rgba(16, 185, 129, 0.2);
+    transition: background 0.3s ease;
+}
+
+.card:hover .badge {
+    background: rgba(16, 185, 129, 0.2);
 }
 
 .card-link {
@@ -259,12 +326,18 @@ body {
     font-size: 0.9rem;
     font-weight: 600;
     color: var(--text-heading);
-    transition: color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.card-link:hover { color: var(--accent-emerald); }
+.card-link:hover {
+    color: var(--accent-emerald);
+    transform: translateX(5px);
+}
 
-/* Contact Section */
+/* Contact Section Animated Cards */
 .contact-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -277,19 +350,25 @@ body {
     border-radius: 12px;
     padding: 24px;
     text-align: center;
-    transition: all 0.3s ease;
+    transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
     color: var(--text-heading);
 }
 
 .contact-box:hover {
     border-color: var(--card-border-hover);
-    transform: translateY(-4px);
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
 }
 
 .contact-box i {
     font-size: 2rem;
     color: var(--accent-emerald);
     margin-bottom: 12px;
+    transition: transform 0.3s ease;
+}
+
+.contact-box:hover i {
+    transform: scale(1.2) rotate(5deg);
 }
 
 .contact-box h3 {
@@ -301,6 +380,18 @@ body {
 .contact-box p {
     font-size: 0.85rem;
     color: var(--text-body);
+}
+
+/* Scroll Reveal Classes (Driven by JS) */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Footer */
