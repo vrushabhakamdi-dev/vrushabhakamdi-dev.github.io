@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
             particles[i].update();
             particles[i].draw();
 
+            // Connect nearby particles with subtle emerald lines
             for (let j = i + 1; j < particles.length; j++) {
                 const dx = particles[i].x - particles[j].x;
                 const dy = particles[i].y - particles[j].y;
@@ -124,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     type();
 
-    // 3. 3D Dynamic Card Tilt Effect (Applied to Skill, Project, and Contact Cards)
+    // 3. 3D Card Tilt Engine (Applied across Skill, Project, and Contact Cards)
     const tiltCards = document.querySelectorAll('.card, .project-card, .contact-box');
 
     tiltCards.forEach(card => {
@@ -136,8 +137,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
 
-            const rotateX = ((y - centerY) / centerY) * -8;
-            const rotateY = ((x - centerX) / centerX) * 8;
+            const rotateX = ((y - centerY) / centerY) * -10;
+            const rotateY = ((x - centerX) / centerX) * 10;
 
             card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
         });
@@ -147,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. Scroll Reveal Observer for Cards and Sections
+    // 4. Scroll Reveal Observer
     const revealElements = document.querySelectorAll('.card, .project-card, .about-card, .contact-box, .section-title');
 
     revealElements.forEach(el => el.classList.add('reveal'));
@@ -177,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 6. Mobile Navigation Menu Toggle
+    // 6. Mobile Menu Toggle
     const menuBtn = document.querySelector('#menu-btn');
     const navbar = document.querySelector('.navbar');
 
@@ -188,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 7. Active Section Highlighting
+    // 7. Active Navigation Link Highlighting
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('.nav-link');
 
@@ -212,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     sections.forEach(section => sectionObserver.observe(section));
 
-    // 8. Smooth Close Mobile Menu on Link Click
+    // 8. Close Mobile Menu on Link Click
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             if (menuBtn && navbar) {
