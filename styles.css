@@ -29,6 +29,19 @@ body {
     position: relative;
 }
 
+/* Scroll Progress Bar */
+#scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-emerald), var(--accent-emerald-bright));
+    width: 0%;
+    z-index: 2000;
+    box-shadow: 0 0 10px var(--accent-emerald-bright);
+    transition: width 0.1s ease-out;
+}
+
 /* Background Canvas for Flying Particles */
 #particles-canvas {
     position: fixed;
@@ -169,6 +182,17 @@ header, section, footer {
     opacity: 0;
 }
 
+.cursor {
+    color: var(--accent-emerald-bright);
+    font-weight: 400;
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
 .hero-description {
     font-size: 1.1rem;
     color: var(--text-body);
@@ -264,31 +288,33 @@ header, section, footer {
     gap: 24px;
 }
 
-/* Cards */
-.card {
+/* Base Cards with 3D Space */
+.card, .project-card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: 12px;
     padding: 30px;
     backdrop-filter: blur(12px);
-    transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transform-style: preserve-3d;
+    transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-.card:hover {
+.card:hover, .project-card:hover {
     border-color: var(--card-border-hover);
-    transform: translateY(-8px);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(16, 185, 129, 0.15);
 }
 
+/* Skill Icons Pop-Out Animation */
 .card-icon {
     font-size: 2.2rem;
     color: var(--accent-emerald-bright);
     margin-bottom: 16px;
-    transition: transform 0.3s ease;
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: translateZ(0px);
 }
 
 .card:hover .card-icon {
-    transform: translateY(-4px) scale(1.1);
+    transform: translateZ(30px) scale(1.15) translateY(-4px);
 }
 
 .card h3 {
@@ -303,11 +329,28 @@ header, section, footer {
     color: var(--text-body);
 }
 
-/* Project Cards */
+/* Project Cards & Title Pop-Out Animation */
 .project-card {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.project-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    color: var(--text-heading);
+    margin-bottom: 8px;
+    display: inline-block;
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s ease, text-shadow 0.3s ease;
+    transform: translateZ(0px);
+}
+
+/* Hover: Project Title Pops Forward in 3D Space */
+.project-card:hover h3 {
+    color: var(--accent-emerald-bright);
+    transform: translateZ(35px) scale(1.06);
+    text-shadow: 0 0 15px rgba(52, 211, 153, 0.5);
 }
 
 .project-subtitle {
@@ -335,7 +378,7 @@ header, section, footer {
     transition: background 0.3s ease;
 }
 
-.card:hover .badge {
+.card:hover .badge, .project-card:hover .badge {
     background: rgba(16, 185, 129, 0.25);
 }
 
@@ -355,11 +398,12 @@ header, section, footer {
     transform: translateX(5px);
 }
 
-/* Contact Section */
+/* Contact Section Grid */
 .contact-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 360px));
+    justify-content: center;
+    gap: 24px;
 }
 
 .contact-box {
@@ -368,13 +412,13 @@ header, section, footer {
     border-radius: 12px;
     padding: 24px;
     text-align: center;
+    transform-style: preserve-3d;
     transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
     color: var(--text-heading);
 }
 
 .contact-box:hover {
     border-color: var(--card-border-hover);
-    transform: translateY(-6px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 0 15px rgba(16, 185, 129, 0.15);
 }
 
@@ -382,11 +426,12 @@ header, section, footer {
     font-size: 2rem;
     color: var(--accent-emerald-bright);
     margin-bottom: 12px;
-    transition: transform 0.3s ease;
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: translateZ(0px);
 }
 
 .contact-box:hover i {
-    transform: scale(1.2) rotate(5deg);
+    transform: translateZ(25px) scale(1.2) rotate(5deg);
 }
 
 .contact-box h3 {
