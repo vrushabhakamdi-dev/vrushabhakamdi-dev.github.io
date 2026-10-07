@@ -89,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const textArray = [
         "Full-Stack Web Developer",
         "Next.js & Node.js Developer",
+        "Arduino & IoT Developer",
         "C / C++ Programmer",
         "Python Automation Engineer"
     ];
